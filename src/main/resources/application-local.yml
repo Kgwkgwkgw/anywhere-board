@@ -1,0 +1,30 @@
+spring:
+#  h2:
+#    console:
+#      enabled: true
+  datasource:
+    platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hikari:
+#      jdbc-url: jdbc:h2:./data/testdb
+#      jdbc-url: jdbc:h2:tcp://localhost:9092/./data/testdb
+      jdbc-url: jdbc:mysql://localhost:3306/Board
+#      driver-class-name: org.h2.Driver
+      driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      naming:
+        # 스프링 버전이 올라가면서 기본 네이밍 규칙이 바뀐듯 하다.
+        # https://www.jpa-buddy.com/blog/hibernate-naming-strategies-jpa-specification-vs-springboot-opinionation/
+        # naming strategy에 대한 글이다.
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+#      ddl-auto: create-drop
+    open-in-view: false
+    show-sql: true
+    properties:
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      hibernate:
+       format_sql: true
+
+
+

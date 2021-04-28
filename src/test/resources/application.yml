@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    platform: h2
+    hikari:
+      #      jdbc-url: jdbc:h2:./data/testdb
+#      jdbc-url: jdbc:h2:mem:board
+      jdbc-url: jdbc:mysql://localhost:3306/Board
+#      driver-class-name: org.h2.Driver
+      driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      naming:
+        # 스프링 버전이 올라가면서 기본 네이밍 규칙이 바뀐듯 하다.
+        # https://www.jpa-buddy.com/blog/hibernate-naming-strategies-jpa-specification-vs-springboot-opinionation/
+        # naming strategy에 대한 글이다.
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+      ddl-auto: create
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
